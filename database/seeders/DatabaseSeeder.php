@@ -19,5 +19,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        Problem::create([
+            'title' => '解二次方程式',
+            'description' => '求解 ax² + bx + c = 0',
+            'difficulty' => 3
+        ]);
+    
+        Problem::create([
+            'title' => '計算圓面積',
+            'description' => '給定半徑 r，求圓的面積。',
+            'difficulty' => 2
+        ]);
     }
 }
