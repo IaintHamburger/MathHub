@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('problems', function (Blueprint $table) {
             $table->id();
@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('title'); // 題目標題
             $table->text('description'); // 題目內容
             $table->integer('difficulty'); // 難度 (1-5)
-            $table->timestamps();
         });
     }
 
