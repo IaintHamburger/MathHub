@@ -1,58 +1,35 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css'
-
-function MessageApp() {
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    fetch("http://localhost:5000/")
-      .then((res) => res.text())
-      .then((data) => setMessage(data));
-  }, []);
-
-  return (
-    <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-      <h1 className="text-5xl font-bold">{message}</h1>
-    </div>
-  );
-}
+import Home from './pages/Home';
+import About from './pages/About';
+import Math from './pages/Math';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      {/* MathHub 標題部分 */}
-      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-        <h1 className="text-5xl font-bold">MathHub</h1>
-      </div>
-
-      {/* MathHub 內容部分 */}
+    <Router>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <nav className="bg-gray-800">
+          <ul className='flex justify-center items-center gap-4 py-4'>
+            <li>
+              <Link to="/" className="text-white hover:text-gray-300 transition-colors">首頁</Link>
+            </li>
+            <li>
+              <Link to="/math" className="text-white hover:text-gray-300 transition-colors">數學天地</Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-white hover:text-gray-300 transition-colors">關於我們</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/math" element={<Math />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </Router>
   )
 }
 
 export default App
-export { MessageApp }
